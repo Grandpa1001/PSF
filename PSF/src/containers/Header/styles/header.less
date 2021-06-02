@@ -1,0 +1,15 @@
+@import '../../../styles/variables.less';
+
+.main-header{
+  border-bottom: 1px solid @mainBorderColor;
+  box-shadow: @mainBoxShadow;
+  height :62px;
+  position: relative;
+
+  &-menu {
+    position: absolute;
+    left: 50%; //przesuniete od lewej o 50%
+    transform: translateX(-50%); // względem siebie -50%
+    top: 0;
+  }
+}
