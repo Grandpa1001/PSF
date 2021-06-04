@@ -1,4 +1,6 @@
 const HTMLWebPackPlugin = require("html-webpack-plugin");
+const path = require('path');
+
 
 module.exports = {
   module: {
@@ -7,34 +9,35 @@ module.exports = {
         test: /\.js$/,
         exclude: "/node_modules/",
         use: {
-          loader:"babel-loader"
+          loader: "babel-loader"
         }
       }, {
         test: /\.less$/,
         use: [
           {
-            loader: 'style-loader', //tworzenie styli nodes from JS string
+            loader: 'style-loader', // creates style nodes from JS strings
           },
           {
-            loader: 'css-loader', // tlumaczenie CSS do CommonJS
+            loader: 'css-loader', // translates CSS into CommonJS
           },
           {
-            loader: 'less-loader', // compilacja less do CSS
+            loader: 'less-loader', // compiles Less to CSS
           },
         ],
       },
-
     ]
   },
-    plugins:[
-      new HTMLWebPackPlugin({
-        template: './src/index.html',
-        filename: './index.html'
-      })
-    ],
-    devServer:{
-      hot: true,
-      contentBase: './',
-      historyApiFallback: true
-    }
-  }
+  plugins: [
+    new HTMLWebPackPlugin({
+      template: './src/index.html',
+      filename: './index.html',
+      title: 'Production',
+    })
+  ],
+  devServer:{
+    hot: true,
+    contentBase: './',
+    historyApiFallback: true
+  },
+
+}

@@ -12,7 +12,7 @@ import './styles/menuButton.less';
   render (){
     const {children, href, location} = this.props;
 
-    const isActive =location.pathname.indexOf(href) >-1;
+    const isActive =location.pathname===href;
 
     const className = classnames('menu-button', {
       'menu-button-active': isActive,
