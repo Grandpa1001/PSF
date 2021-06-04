@@ -7,9 +7,9 @@ export default class Header extends Component {
     return (
        <div className= "main-header">
         <ul className = "main-header-menu">
-          <MenuButton isActive={true}>Portfolio</MenuButton>
-          <MenuButton>Teksty</MenuButton>
-          <MenuButton>Mordeczki</MenuButton>
+          <MenuButton href="portfolio" isActive={true}>Portfolio</MenuButton>
+          <MenuButton href="testy" >Teksty</MenuButton>
+          <MenuButton href="mordeczki" >Mordeczki</MenuButton>
         </ul>
        </div>
      );
