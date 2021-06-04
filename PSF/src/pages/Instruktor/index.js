@@ -1,3 +1,19 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
+import {connect} from 'react-redux';
 
-<div>Instruktor</div>
+function mapStateToProps(state){
+  return{
+    activePage: state.activePage,
+  }
+}
+class Instruktor extends PureComponent{
+
+  render(){
+    return(
+    <div>Store: <b>{this.props.activePage}</b></div>
+    );
+  }
+}
+
+
+export default connect(mapStateToProps, null)(Instruktor)

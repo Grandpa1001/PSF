@@ -1,4 +1,9 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 
-
-<div>Materialy</div>
+export default class Materialy extends PureComponent{
+  render(){
+    return(
+      <b>Materialy</b>
+    );
+  }
+}

@@ -1,4 +1,9 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 
-
-<div>Szkolenia</div>
+export default class Szkolenia extends PureComponent{
+  render(){
+    return(
+      <b>Szkolenia</b>
+    );
+  }
+}
