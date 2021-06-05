@@ -2,10 +2,11 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {MATERIALY, SZKOLENIA} from '../../constants/pages';
 import {navigateTo} from '../../actions/navigate';
+import {getActivePage} from '../../selectors/root';
 
 function mapStateToProps(state){
   return{
-    activePage: state.activePage,
+    activePage: getActivePage(state),
   }
 }
 function mapDispatchToProps(dispatch){

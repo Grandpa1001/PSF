@@ -3,12 +3,13 @@ import MenuButton from './components/MenuButton/MenuButton';
 import {pages} from '../../constants/pages';
 import {navigateTo} from '../../actions/navigate';
 import {connect} from  'react-redux';
+import {getActivePage} from '../../selectors/root';
 
 import './styles/header.less';
 
 function mapStateToProps(state){
   return{
-    activePage: state.activePage,
+    activePage: getActivePage(state),
   }
 }
 function mapDispatchToProps(dispatch){
