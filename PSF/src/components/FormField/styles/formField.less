@@ -1,0 +1,25 @@
+@import "../../../styles/variables";
+
+
+.form-field {
+  margin-bottom: 15px;
+  position: relative;
+  padding-top: 23px;
+
+  &-label {
+    font-size: @smallFontSize;
+    font-variant: small-caps;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: @mainTextColor;
+    transition: left @animationFastTime ease-in-out,top @animationFastTime ease-in-out, color @animationSlowTime linear;
+
+    &-empty{
+      top:28px;
+      left: 10px;
+      font-size: @largeFontSize;
+      color: @disableColor;
+    }
+    }
+  }

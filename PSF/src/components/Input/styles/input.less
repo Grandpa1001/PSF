@@ -1,8 +1,19 @@
 @import "../../../styles/variables";
 
 
-.input-container {
+.form-input {
   width: 100%;
-  max-width: 550px;
-  margin-bottom: 30px;
+  line-height: @mainLineHeight;
+  height: @formElementHeight;
+  font-size: @formFontSize;
+  color: @mainTextColor;
+  padding: 0 10px;
+  border-radius: @formBorderRadius;
+  border: 1px solid @formBorderColor;
+  transition: border @animationFastTime linear;
+  }
+
+
+  &:focus{
+    border: 1px solid @formBorderActiveColor;
   }
