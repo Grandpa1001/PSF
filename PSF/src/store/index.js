@@ -1,12 +1,5 @@
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
-import rootReducer from '../reducers/rootReducer';
-
-
-const mainStore = combineReducers(
-  {
-  root: rootReducer,
-  }
-)
+import mainStore from '../reducers';
 const middlewares = [];
 if (process.env.NODE_ENV ===`development`){
   const {createLogger} = require(`redux-logger`);
