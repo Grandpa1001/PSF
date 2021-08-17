@@ -7,19 +7,8 @@ import FormField from '../../components/FormField/FormField';
 
 export default class SzkoleniaComponent extends PureComponent{
 
-constructor(){
-  super();
-  this.state ={
-    userName: '',
-    userEmail:'',
-
-  }
-}
-  onInputChange = (value,name) => {
-    this.setState({[name]: value});
-  }
   render(){
-    const {userName, userEmail} = this.state;
+    const {changeForm, userName, userEmail} = this.props;
     return(
       <Page title="Szkolenia">
         <Paragraf>
@@ -29,15 +18,15 @@ constructor(){
         <FormField label="Imię" isEmpty={userName.length === 0}>
           <Input
           value = {userName}
-          onChange = {this.onInputChange}
-          name="userName"
+          onChange = {changeForm}
+          name="name"
           />
           </FormField>
-          <FormField label="Email" isEmpty={userEmail.length  === 0}>
+          <FormField label="E-mail" isEmpty={userEmail.length  === 0}>
           <Input
           value = {userEmail}
-          onChange = {this.onInputChange}
-          name="userEmail"
+          onChange = {changeForm}
+          name="email"
           />
           </FormField>
         </FormContainer>
