@@ -1,1 +1,2 @@
 export const CHANGE_FORM = "SZKOLENIE::CHANGE_FORM";
+export const TOUCH_FORM = "SZKOLENIE::TOUCH_FORM";

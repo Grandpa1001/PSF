@@ -7,11 +7,13 @@ function mapStateToProps(state){
     userName:    selector.getFieldValue(state, 'name'),
     userEmail:   selector.getFieldValue(state, 'email'),
     userMessage: selector.getFieldValue(state, 'message'),
+    touchedFields: selector.getFieldTouchedState(state),
   };
 }
 function mapDispatchToProps(dispatch){
   return{
-    changeForm: (value, fieldName)=>dispatch(action.changeForm(value, fieldName))
+    changeForm: (value, fieldName)=>dispatch(action.changeForm(value, fieldName)),
+    touchField: (e, fieldName) => dispatch(action.touchField(fieldName)),
   };
 }
 

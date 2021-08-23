@@ -11,14 +11,15 @@ import ButtonContainer from '../../components/ButtonContainer/ButtonContainer';
 export default class SzkoleniaComponent extends PureComponent{
 
 isFormValid = () => {
-  const{userName, userEmail, userMessage} = this.props;
+  const{userName, userEmail, userMessage, touchedFields} = this.props;
   const errors = {};
+  if(touchedFields.name){
   if(userName.length === 0){
       errors.name = 'Pole imię jest wymagane';
   }else if(userName.length < 3){
       errors.name = 'Pole imię jest za krótkie';
   }
-
+}
   if(userEmail.length === 0){
       errors.email = 'Pole e-mail jest wymagane';
   }else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userEmail)) {
@@ -32,7 +33,7 @@ isFormValid = () => {
   }
     return errors;
 
-}
+  }
 
 sendForm = () => {
   const errors = this.isFormValid();
@@ -42,7 +43,7 @@ sendForm = () => {
 }
 
   render(){
-    const {changeForm, userName, userEmail, userMessage} = this.props;
+    const {changeForm, userName, userEmail, userMessage, touchField} = this.props;
     const errors = this.isFormValid();
     return(
       <Page title="Szkolenia">
@@ -58,6 +59,7 @@ sendForm = () => {
             <Input
               value = {userName}
               onChange = {changeForm}
+              onBlur = {touchField}
               name="name"
               isInvalid = {!!errors.name}
             />
@@ -86,5 +88,6 @@ sendForm = () => {
         </FormContainer>
       </Page>
     );
+
   }
 }
