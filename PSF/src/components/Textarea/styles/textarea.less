@@ -1,0 +1,20 @@
+@import "../../../styles/variables";
+
+
+.form-textarea {
+  width: 100%;
+  line-height: @mainLineHeight;
+  height: 150px;
+  font-size: @formFontSize;
+  color: @mainTextColor;
+  padding: 8px 10px;
+  border-radius: @formBorderRadius;
+  border: 1px solid @formBorderColor;
+  transition: border @animationFastTime linear;
+  resize: none;
+  }
+
+
+  &:focus{
+    border: 1px solid @formBorderActiveColor;
+  }

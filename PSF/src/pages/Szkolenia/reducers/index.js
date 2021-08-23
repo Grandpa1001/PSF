@@ -2,6 +2,7 @@ import * as actionType from '../constants/actionTypes';
 const initialState = {
   name: '',
   email:'',
+  message: '',
 }
 
 export default function szkoleniaReducer(state = initialState, action){
