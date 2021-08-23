@@ -8,17 +8,21 @@ import className from 'classnames';
 static propTypes = {
   value: PropTypes.string,
   isEmpty:PropTypes.bool,
+  errorMessage: PropTypes.string,
   }
 
   render (){
-    const {children, label, isEmpty} = this.props;
+    const {children, label, isEmpty, errorMessage} = this.props;
     const formFieldClasses = className('form-field-label',{
       'form-field-label-empty': isEmpty
     })
     return (
       <div className ="form-field">
         <div className={formFieldClasses}>{label}</div>
-        {children}
+          {children}
+        <div className = 'form-field-error'>
+          {errorMessage}
+        </div>
       </div>
      );
   }

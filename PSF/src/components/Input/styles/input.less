@@ -11,9 +11,17 @@
   border-radius: @formBorderRadius;
   border: 1px solid @formBorderColor;
   transition: border @animationFastTime linear;
-  }
+
 
 
   &:focus{
     border: 1px solid @formBorderActiveColor;
+  }
+
+&-invalid{
+  border: 1px solid @formErrorColor;
+}
+
+
+
   }

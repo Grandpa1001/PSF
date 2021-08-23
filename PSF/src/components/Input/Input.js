@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import className from 'classnames';
 import './styles/input.less';
 
  export default class Input extends PureComponent {
@@ -7,6 +8,7 @@ import './styles/input.less';
 static propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  isInvalid: PropTypes.bool,
   }
 
 onChange = (e) => {
@@ -14,9 +16,13 @@ onChange = (e) => {
   onChange(e.target.value, name);
 }
   render (){
-    const {value} = this.props;
+    const {value, isInvalid} = this.props;
+    const inputClasses = className('form-input',{
+      'form-input-invalid' : isInvalid,
+    })
     return (
-      <input className ="form-input"
+      <input
+      className ={inputClasses}
       value ={value}
       onChange = {this.onChange}
       />
