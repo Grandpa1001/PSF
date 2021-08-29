@@ -12,9 +12,13 @@
   border: 1px solid @formBorderColor;
   transition: border @animationFastTime linear;
   resize: none;
-  }
 
 
   &:focus{
     border: 1px solid @formBorderActiveColor;
   }
+
+  &-invalid{
+    border: 1px solid @formErrorColor;
+  }
+}

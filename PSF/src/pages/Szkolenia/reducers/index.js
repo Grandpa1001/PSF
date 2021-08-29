@@ -26,6 +26,25 @@ export default function szkoleniaReducer(state = initialState, action){
             touchedFields: newTouchedState,
           }
         }
+        case actionType.FOCUS_FORM: {
+            const newTouchedState = {...state.touchedFields};
+            newTouchedState[action.fieldName] = false;
+            return {
+              ...state,
+              touchedFields: newTouchedState,
+            }
+          }
+          case actionType.TOUCH_ALL: {
+              return {
+                ...state,
+                touchedFields:{
+                  name: true,
+                  email:true,
+                  message: true,
+                }
+
+              }
+            }
   }
 }
   return state;

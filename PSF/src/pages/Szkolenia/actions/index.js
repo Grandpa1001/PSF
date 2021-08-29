@@ -15,3 +15,16 @@ export function touchField(fieldName){
     fieldName,
   }
 }
+
+export function focusField(fieldName){
+  return {
+    type: actionType.FOCUS_FORM,
+    fieldName,
+  }
+}
+
+export function touchAllFields(){
+  return {
+    type: actionType.TOUCH_ALL,
+  }
+}

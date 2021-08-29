@@ -9,6 +9,7 @@ static propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
   isInvalid: PropTypes.bool,
   }
 
@@ -24,6 +25,12 @@ onBlur = (e) => {
   }
 }
 
+onFocus = (e) => {
+  const {onFocus,name} = this.props;
+  if(onFocus){
+    onFocus(e, name);
+  }
+}
   render (){
     const {value, isInvalid} = this.props;
     const inputClasses = className('form-input',{
@@ -35,6 +42,7 @@ onBlur = (e) => {
       value ={value}
       onChange = {this.onChange}
       onBlur = {this.onBlur}
+      onFocus  = {this.onFocus}
       />
      );
   }

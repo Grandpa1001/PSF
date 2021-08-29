@@ -14,6 +14,8 @@ function mapDispatchToProps(dispatch){
   return{
     changeForm: (value, fieldName)=>dispatch(action.changeForm(value, fieldName)),
     touchField: (e, fieldName) => dispatch(action.touchField(fieldName)),
+    focusField: (e, fieldName) => dispatch(action.focusField(fieldName)),
+    touchAllFields: () => dispatch(action.touchAllFields()),
   };
 }
 
