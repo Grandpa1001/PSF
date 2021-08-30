@@ -40,13 +40,14 @@ isFormValid = (force = false ) => {
   }
 
 sendForm = () => {
-  const {touchAllFields} = this.props;
+  const {touchAllFields, sendEmail} = this.props;
   const errors = this.isFormValid(true);
   if(!errors.message && !errors.email && !errors.name){
     console.log('Wyślij formularz');
   }else{
     touchAllFields();
   }
+    sendEmail();
 }
 
   render(){

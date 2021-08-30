@@ -16,6 +16,7 @@ function mapDispatchToProps(dispatch){
     touchField: (e, fieldName) => dispatch(action.touchField(fieldName)),
     focusField: (e, fieldName) => dispatch(action.focusField(fieldName)),
     touchAllFields: () => dispatch(action.touchAllFields()),
+    sendEmail: () => dispatch(action.sendEmail()),
   };
 }
 
