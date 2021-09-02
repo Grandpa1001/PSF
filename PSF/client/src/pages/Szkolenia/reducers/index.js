@@ -7,7 +7,10 @@ const initialState = {
     name: false,
     email:false,
     message: false,
-  }
+  },
+  isEmailPending: false,
+  isEmailSend: false,
+  sendErrors: {},
 }
 
 export default function szkoleniaReducer(state = initialState, action){
@@ -42,10 +45,35 @@ export default function szkoleniaReducer(state = initialState, action){
                   email:true,
                   message: true,
                 }
-
               }
             }
-  }
-}
+          case actionType.SEND_EMAIL: {
+              return {
+                ...state,
+                isEmailPending: true,
+              }
+          }
+
+          case actionType.SEND_EMAIL_SUCCESS: {
+              return {
+                ...initialState,
+                isEmailSend: true,
+              }
+          }
+
+          case actionType.SEND_EMAIL_FAILURE: {
+              return {
+                ...state,
+                isEmailPending: false,
+                sendErrors: action.erros,
+              }
+          }
+          case actionType.RESET_FORM: {
+              return {
+                ...initialState,
+              }
+          }
+        }
+      }
   return state;
 }

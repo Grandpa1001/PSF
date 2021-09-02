@@ -8,6 +8,9 @@ function mapStateToProps(state){
     userEmail:   selector.getFieldValue(state, 'email'),
     userMessage: selector.getFieldValue(state, 'message'),
     touchedFields: selector.getFieldTouchedState(state),
+    isEmailSend: selector.isEmailSend(state),
+    isEmailPending: selector.isEmailPending(state),
+    sendErrors: selector.getSendErrors(state),
   };
 }
 function mapDispatchToProps(dispatch){
@@ -16,7 +19,8 @@ function mapDispatchToProps(dispatch){
     touchField: (e, fieldName) => dispatch(action.touchField(fieldName)),
     focusField: (e, fieldName) => dispatch(action.focusField(fieldName)),
     touchAllFields: () => dispatch(action.touchAllFields()),
-    sendEmail: () => dispatch(action.sendEmail()),
+    sendEmail: data => dispatch(action.sendEmail(data)),
+    resetForm: () => dispatch(action.resetForm()),
   };
 }
 

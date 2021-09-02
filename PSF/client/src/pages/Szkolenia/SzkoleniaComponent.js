@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent, Fragment} from 'react';
 import Page from '../../components/Page/Page';
 import Paragraf from '../../components/Paragraf/Paragraf';
 import FormContainer from '../../components/FormContainer/FormContainer';
@@ -9,6 +9,10 @@ import Button from '../../components/Button/Button';
 import ButtonContainer from '../../components/ButtonContainer/ButtonContainer';
 
 export default class SzkoleniaComponent extends PureComponent{
+
+componentDidMount(){
+  this.props.resetForm();
+}
 
 isFormValid = (force = false ) => {
   const{userName, userEmail, userMessage, touchedFields} = this.props;
@@ -40,14 +44,13 @@ isFormValid = (force = false ) => {
   }
 
 sendForm = () => {
-  const {touchAllFields, sendEmail} = this.props;
+  const {touchAllFields, sendEmail, userName, userEmail, userMessage,} = this.props;
   const errors = this.isFormValid(true);
   if(!errors.message && !errors.email && !errors.name){
-    console.log('Wyślij formularz');
+    sendEmail({userName, userEmail, userMessage});
   }else{
     touchAllFields();
   }
-    sendEmail();
 }
 
   render(){
@@ -57,7 +60,11 @@ sendForm = () => {
       userEmail,
       userMessage,
       touchField,
-      focusField
+      focusField,
+      isEmailSend,
+      isEmailPending,
+      sendErrors,
+      resetForm,
     } = this.props;
     const errors = this.isFormValid();
     return(
@@ -65,6 +72,12 @@ sendForm = () => {
         <Paragraf>
         W celu uzyskania zaproszenia na szkolenia skontaktuj się przez formularz. Odezwiemy się!
         </Paragraf>
+        {isEmailSend ? (
+          <Fragment>
+            <Paragraf>Dziękujemy za kontakt, możesz wysłać jeszcze jedną wiadomość jeśli chcesz.</Paragraf>
+            <Button onClick ={resetForm}>Wyślij nową wiadomość</Button>
+          </Fragment>
+        ) : (
         <FormContainer>
           <FormField label="Imię" isEmpty={userName.length === 0} errorMessage = {errors.name}>
             <Input
@@ -99,9 +112,10 @@ sendForm = () => {
             />
           </FormField>
           <ButtonContainer>
-            <Button onClick = {this.sendForm}>Wyślij</Button>
+            <Button onClick = {this.sendForm} disabled={isEmailPending}>Wyślij</Button>
           </ButtonContainer>
         </FormContainer>
+        )}
       </Page>
     );
 

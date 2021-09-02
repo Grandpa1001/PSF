@@ -30,27 +30,36 @@ export function touchAllFields(){
   }
 }
 
-export function sendEmail(){
+export function sendEmail(data){
   return dispatch => {
     dispatch({
       type: actionType.SEND_EMAIL,
+      data,
     })
-    return emailApi.sendEmail()
-    .then((response) => dispatch(sendEmailSuccess(response)))
-    .catch((errors) => dispatch(sendEmailFailure(errors)))
+    return emailApi.sendEmail(data)
+    .then((response) => dispatch(sendEmailSuccess(response, data)))
+    .catch((errors) => dispatch(sendEmailFailure(errors.response, data)))
   }
 }
 
-function sendEmailSuccess(response){
+function sendEmailSuccess(response, data){
   return {
     type: actionType.SEND_EMAIL_SUCCESS,
+    data,
     response
   }
 }
 
-function sendEmailFailure(errors){
+function sendEmailFailure(errors, data){
   return {
     type: actionType.SEND_EMAIL_FAILURE,
-    errors
+    errors,
+  }
+}
+
+export function resetForm(errors, data){
+  return {
+    type: actionType.RESET_FORM,
+    errors,
   }
 }

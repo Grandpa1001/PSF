@@ -1,20 +1,26 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import className from 'classnames';
 import './styles/button.less';
 
  export default class Button extends PureComponent {
 
    onClick = (e) => {
      e.preventDefault();
-     const {onClick} = this.props;
-     if(onClick){
+     const {onClick, disabled} = this.props;
+     if(onClick && !disabled){
        onClick(e);
      }
    }
+
   render (){
-    const {value, children} = this.props;
+    const {children, disabled} = this.props;
+    const buttonClass = className('form-button', {
+      'form-button-disabled': disabled,
+    })
     return (
-      <button className ="form-button"
+      <button
+      className ={buttonClass}
       onClick = {this.onClick}
     >
       {children}
