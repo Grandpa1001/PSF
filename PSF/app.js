@@ -8,6 +8,11 @@ const port = 3000;
 const app = express();
 const router = express.Router();
 
+
+app.use((req, res, next)=>{
+  res.setHeader('Access-Control-Allow-Origin','*');
+  next();
+})
 app.use(express.static(__dirname + '/client/dist'));
 
 app.use('/api', routesScripts(router));
