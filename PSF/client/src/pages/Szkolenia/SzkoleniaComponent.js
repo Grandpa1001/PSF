@@ -12,6 +12,9 @@ export default class SzkoleniaComponent extends PureComponent{
 
 componentDidMount(){
   this.props.resetForm();
+  if(!this.props.pageContent){
+      this.props.getPageContent();
+  }
 }
 
 isFormValid = (force = false ) => {
@@ -65,12 +68,15 @@ sendForm = () => {
       isEmailPending,
       sendErrors,
       resetForm,
+      pageContent,
     } = this.props;
     const errors = this.isFormValid();
     return(
-      <Page title="Szkolenia">
+      <Page title={pageContent?.title}>
+      {pageContent ? (
+        <Fragment>
         <Paragraf>
-        W celu uzyskania zaproszenia na szkolenia skontaktuj się przez formularz. Odezwiemy się!
+        {pageContent.description}
         </Paragraf>
         {isEmailSend ? (
           <Fragment>
@@ -116,6 +122,8 @@ sendForm = () => {
           </ButtonContainer>
         </FormContainer>
         )}
+        </Fragment>
+      ) : <b>Wczytuję treść...</b>}
       </Page>
     );
 

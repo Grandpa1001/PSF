@@ -2,6 +2,8 @@ import {connect} from 'react-redux';
 import SzkoleniaComponent from './SzkoleniaComponent';
 import * as action from './actions';
 import * as selector from './selectors';
+import * as globalSelector from '../../selectors/root';
+import * as globalAction from '../../actions/globalActions';
 function mapStateToProps(state){
   return {
     userName:    selector.getFieldValue(state, 'name'),
@@ -11,6 +13,7 @@ function mapStateToProps(state){
     isEmailSend: selector.isEmailSend(state),
     isEmailPending: selector.isEmailPending(state),
     sendErrors: selector.getSendErrors(state),
+    pageContent: globalSelector.getPageContent(state, 'szkolenie'),
   };
 }
 function mapDispatchToProps(dispatch){
@@ -21,6 +24,7 @@ function mapDispatchToProps(dispatch){
     touchAllFields: () => dispatch(action.touchAllFields()),
     sendEmail: data => dispatch(action.sendEmail(data)),
     resetForm: () => dispatch(action.resetForm()),
+    getPageContent: () => dispatch(globalAction.getPageContent('szkolenie')),
   };
 }
 

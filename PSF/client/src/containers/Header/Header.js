@@ -20,6 +20,11 @@ function mapDispatchToProps(dispatch){
 
 class Header extends Component {
 
+componentDidMount(){
+  this.props.navigateTo(window.location.pathname);
+}
+
+
   render (){
     const {navigateTo, activePage} = this.props;
     return (
