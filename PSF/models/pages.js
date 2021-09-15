@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const pagesSchema = new mongoose.Schema({
   url: String,
   title: String,
@@ -6,7 +7,4 @@ const pagesSchema = new mongoose.Schema({
   published: Boolean,
 });
 
-
-
-
-exports.module = pagesSchema;
+module.exports = mongoose.model('pages', pagesSchema);

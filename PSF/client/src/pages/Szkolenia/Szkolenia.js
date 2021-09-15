@@ -13,7 +13,7 @@ function mapStateToProps(state){
     isEmailSend: selector.isEmailSend(state),
     isEmailPending: selector.isEmailPending(state),
     sendErrors: selector.getSendErrors(state),
-    pageContent: globalSelector.getPageContent(state, 'szkolenie'),
+    pageContent: globalSelector.getPageContent(state, 'szkolenia'),
   };
 }
 function mapDispatchToProps(dispatch){
@@ -24,7 +24,7 @@ function mapDispatchToProps(dispatch){
     touchAllFields: () => dispatch(action.touchAllFields()),
     sendEmail: data => dispatch(action.sendEmail(data)),
     resetForm: () => dispatch(action.resetForm()),
-    getPageContent: () => dispatch(globalAction.getPageContent('szkolenie')),
+    getPageContent: () => dispatch(globalAction.getPageContent('szkolenia')),
   };
 }
 
