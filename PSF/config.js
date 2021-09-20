@@ -5,6 +5,7 @@ const appConfig = {
   emailFrom : 'wolek4004@gmail.com',
   emailTo : 'wolek4004@gmail.com',
   emailPassword : 'gynslhrnzodtraki',
+  secretSessionKey: 'secretSessionSTRING'
 };
 
 

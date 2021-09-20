@@ -1,5 +1,5 @@
-import {request} from './requestHelper';
+import {post} from './requestHelper';
 
 export function sendEmail(data){
-  return request.post('sendEmail', {...data});
+  return post('sendEmail', {...data});
 }

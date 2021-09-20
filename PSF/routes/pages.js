@@ -6,6 +6,7 @@ const pages = function (router){
   router
     .route('/pages')
     .get(function(req, res, next){
+      console.log('pages', req.session.userId);
       if(req.body){
         Pages.findOne({url: req.query.url, published: true}, (err, pages) => {
           if (err) {

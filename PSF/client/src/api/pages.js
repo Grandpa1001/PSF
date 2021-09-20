@@ -1,6 +1,5 @@
-import {request} from './requestHelper';
-
+import {get} from './requestHelper';
 
 export function getPageContent(pageName){
-  return request.get('pages', {params: {url: pageName}});
+  return get('pages', {params: {url: pageName},withCredentials: true});
 }

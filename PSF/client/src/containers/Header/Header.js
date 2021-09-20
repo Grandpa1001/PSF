@@ -30,7 +30,9 @@ componentDidMount(){
     return (
        <div className= "main-header">
         <ul className = "main-header-menu">
-        {pages.map((page, index) => {
+        {pages
+          .filter(page => page.showInMenu)
+          .map((page, index) => {
           return(
             <MenuButton
             key={index}
