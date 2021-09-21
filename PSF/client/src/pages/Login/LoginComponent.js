@@ -18,8 +18,8 @@ export default class LoginComponent extends Component {
     };
 
     submit = () => {
-        const {password, authenticate, login} = this.props;
-        console.log('md5('+password+') & submit', md5(password));
+        const {password, authenticate, login, loginUser} = this.props;
+        loginUser(login, md5(password), this.onLoginFinished);
     }
 
     onLoginFinished = (error, success) => {

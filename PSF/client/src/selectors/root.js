@@ -1,3 +1,5 @@
+export * from './user';
+
 function getRoot(state){
   return state.root;
 }

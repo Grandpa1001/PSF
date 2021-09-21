@@ -1,0 +1,9 @@
+export const CHANGE_FORM = 'CHANGE_FORM';
+export const SAVE_FORM = 'SAVE_FORM';
+export const SAVE_FORM_SUCCESS = 'SAVE_FORM_SUCCESS';
+export const SAVE_FORM_FAILURE = 'SAVE_FORM_FAILURE';
+export const EDIT_ITEM = 'EDIT_ITEM';
+export const REMOVE_ITEM = 'REMOVE_ITEM';
+export const REMOVE_ITEM_SUCCESS = 'REMOVE_ITEM_SUCCESS';
+export const REMOVE_ITEM_FAILURE = 'REMOVE_ITEM_FAILURE';
+export const RESET = 'RESET';

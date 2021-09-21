@@ -24,10 +24,18 @@ export const LOGIN = {
   showInMenu: false,
 };
 
+export const ADMIN = {
+  label: 'Admin',
+  url: '/admin',
+  component: 'Admin',
+  showInMenu: false,
+};
+
 
 export const pages = [
   INSTRUKTOR,
   MATERIALY,
   SZKOLENIA,
-  LOGIN
+  LOGIN,
+  ADMIN
 ];

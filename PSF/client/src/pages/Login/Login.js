@@ -7,7 +7,7 @@ import * as navigateActions from '../../actions/navigate';
 
 import * as selectors from './selectors';
 import LoginComponent from './LoginComponent';
-//import {ADMIN} from '../../constants/pages';
+import {ADMIN} from '../../constants/pages';
 function mapStateToProps(state) {
     return {
         login: selectors.getLogin(state),
@@ -19,7 +19,7 @@ function mapDispatchToProps(dispatch) {
         changeLogin: login => dispatch(actions.changeLogin(login)),
         changePassword: password => dispatch(actions.changePassword(password)),
         loginUser: (login, password, callback) => dispatch(actions.loginUser(login, password, callback)),
-      //  goToAdminPage: () => dispatch(navigateActions.navigateTo(ADMIN.url)),
+        goToAdminPage: () => dispatch(navigateActions.navigateTo(ADMIN.url)),
     };
 }
 
