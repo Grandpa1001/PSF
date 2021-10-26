@@ -6,7 +6,7 @@ import './styles/input.less';
  export default class Input extends PureComponent {
 
 static propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
@@ -19,8 +19,12 @@ static defaultProps = {
 }
 
 onChange = (e) => {
-  const {onChange,name} = this.props;
-  onChange(e.target.value, name);
+  const {onChange,name,type} = this.props;
+  if(type ==='file'){
+    onChange(e.target.files[0], name);
+  }else{
+    onChange(e.target.value, name);
+  }
 }
 
 onBlur = (e) => {
