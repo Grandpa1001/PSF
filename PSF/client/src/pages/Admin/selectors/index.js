@@ -16,3 +16,7 @@ export function getDescription(state){
 export function getFile(state){
   return getAdminData(state).file;
 }
+
+export function isPending(state){
+  return getAdminData(state).isPending;
+}

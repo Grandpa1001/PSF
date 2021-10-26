@@ -5,6 +5,7 @@ import FormField  from '../../components/FormField/FormField';
 import Input  from '../../components/Input/Input';
 import ButtonContainer  from '../../components/ButtonContainer/ButtonContainer';
 import Button  from '../../components/Button/Button';
+import Loader  from '../../components/Loader/Loader';
 
 export default class LoginComponent extends Component {
   static propTypes = {
@@ -17,6 +18,7 @@ export default class LoginComponent extends Component {
     goToLoginPage: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
     changeForm: PropTypes.func.isRequired,
+    isPending:PropTypes.bool,
 
     isUserDataFetching: PropTypes.bool.isRequired,
 
@@ -88,6 +90,7 @@ export default class LoginComponent extends Component {
        file,
        description,
        changeForm,
+       isPending,
      } = this.props;
      const errors = this.state.showErrors ? this.getFormErrors() : {};
     return(
@@ -96,6 +99,7 @@ export default class LoginComponent extends Component {
       <p>Jesteś zalogowany jako : <b>{user}</b></p>
       }
       <div>Dodaj nową pracę: </div>
+      {isPending ? <Loader/> : (
         <Fragment>
         <FormField
         label ="Tytuł"
@@ -138,6 +142,7 @@ export default class LoginComponent extends Component {
               <Button type="primary" onClick={this.submit}>Save</Button>
           </ButtonContainer>
         </Fragment>
+        )}
       </Page>
     )
   }

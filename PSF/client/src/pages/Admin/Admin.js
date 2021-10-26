@@ -18,6 +18,7 @@ function mapStateToProps(state) {
         title: selectors.getTitle(state),
         file: selectors.getFile(state),
         description: selectors.getDescription(state),
+        isPending: selectors.isPending(state),
     };
 }
 function mapDispatchToProps(dispatch) {
