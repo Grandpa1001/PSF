@@ -17,3 +17,7 @@ export function save(id, data){
   return request.put('portfolio', form, request.fileHeaders);
   }
 }
+
+export function getList(){
+  return request.get('portfolio');
+}

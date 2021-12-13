@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 import rootReducer from './rootReducer';
 import userReducer from './userReducer';
-
+import dataReducer from './data';
 
 const viewReducers = {};
 
@@ -9,6 +9,7 @@ function createReducer(){
   const store = {};
   store.root = rootReducer;
   store.user = userReducer;
+  store.data = dataReducer;
   if(Object.keys(viewReducers).length > 0) {
     store.view = combineReducers({...viewReducers});
   }

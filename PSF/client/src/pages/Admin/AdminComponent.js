@@ -6,6 +6,7 @@ import Input  from '../../components/Input/Input';
 import ButtonContainer  from '../../components/ButtonContainer/ButtonContainer';
 import Button  from '../../components/Button/Button';
 import Loader  from '../../components/Loader/Loader';
+import PortfolioList  from './components/PortfolioList';
 
 export default class LoginComponent extends Component {
   static propTypes = {
@@ -13,15 +14,17 @@ export default class LoginComponent extends Component {
     title: PropTypes.string.isRequired,
     file: PropTypes.object,
     description: PropTypes.string.isRequired,
+    isPending:PropTypes.bool.isRequired,
 
-    getSesion: PropTypes.func,
+    getSession: PropTypes.func.isRequired,
     goToLoginPage: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
     changeForm: PropTypes.func.isRequired,
-    isPending:PropTypes.bool,
+    portfolioList:PropTypes.array,
 
-    isUserDataFetching: PropTypes.bool.isRequired,
-
+    isUserDataFetching: PropTypes.bool,
+    isPortfolioFetching: PropTypes.bool,
+    isPortfolioFetched: PropTypes.bool,
   };
 
   constructor(){
@@ -29,7 +32,12 @@ export default class LoginComponent extends Component {
     this.state = {showErrors:false};
   }
   componentDidMount(){
+  const{isPortfolioFetching, isPortfolioFetched} = this.props;
+  if(!isPortfolioFetching && !isPortfolioFetched) {
+      this.props.getPortfolioList();
+  }
   this.props.getSession(this.onFetchSessionFinished);
+
   }
 
   onFetchSessionFinished = (error, response) => {
@@ -91,6 +99,8 @@ export default class LoginComponent extends Component {
        description,
        changeForm,
        isPending,
+       portfolioList,
+       isPortfolioFetching,
      } = this.props;
      const errors = this.state.showErrors ? this.getFormErrors() : {};
     return(
@@ -99,6 +109,12 @@ export default class LoginComponent extends Component {
       <p>Jesteś zalogowany jako : <b>{user}</b></p>
       }
       <div>Dodaj nową pracę: </div>
+
+      {isPortfolioFetching ? <Loader/> : (
+          <PortfolioList portfolioList={portfolioList} />
+      )}
+
+
       {isPending ? <Loader/> : (
         <Fragment>
         <FormField
