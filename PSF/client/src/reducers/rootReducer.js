@@ -1,8 +1,8 @@
-import {INSTRUKTOR} from '../constants/pages';
+import {PORTFOLIO} from '../constants/pages';
 import {NAVIGATE_TO, GET_PAGE_CONTENT_SUCCESS} from '../constants/actionTypes';
 
 const initialState={
-  activePage: INSTRUKTOR.url,
+  activePage: PORTFOLIO.url,
   pageContent: {},
 }
 export default function rootReducer (state=initialState, action){

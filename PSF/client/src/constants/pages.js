@@ -1,19 +1,21 @@
-export const INSTRUKTOR = {
-  label: 'Instruktor',
+export const PORTFOLIO = {
+  label: 'Portfolio',
   url: '/',
-  component: 'Instruktor',
+  component: 'Portfolio',
   showInMenu: true,
 };
-export const MATERIALY = {
-  label: 'Materiały',
-  url: '/materialy',
-  component: 'Materialy',
+
+export const O_MNIE = {
+  label: 'O mnie',
+  url: '/o_mnie',
+  component: 'Omnie',
   showInMenu: true,
 };
-export const SZKOLENIA = {
-  label: 'Szkolenia',
-  url: '/szkolenia',
-  component: 'Szkolenia',
+
+export const KONTAKT = {
+  label: 'Kontakt',
+  url: '/kontakt',
+  component: 'Kontakt',
   showInMenu: true,
 };
 
@@ -31,11 +33,10 @@ export const ADMIN = {
   showInMenu: false,
 };
 
-
 export const pages = [
-  INSTRUKTOR,
-  MATERIALY,
-  SZKOLENIA,
+  PORTFOLIO,
+  O_MNIE,
+  KONTAKT,
   LOGIN,
-  ADMIN
+  ADMIN,
 ];

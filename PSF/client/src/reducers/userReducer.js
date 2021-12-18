@@ -1,4 +1,4 @@
-import {INSTRUKTOR} from '../constants/pages';
+import {PORTFOLIO} from '../constants/pages';
 import {GET_SESSION, GET_SESSION_SUCCESS, GET_SESSION_FAILURE} from '../constants/actionTypes';
 
 const initialState = {

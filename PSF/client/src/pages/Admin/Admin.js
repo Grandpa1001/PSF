@@ -8,7 +8,7 @@ import * as navigateActions from '../../actions/navigate';
 
 import * as globalSelectors from '../../selectors/root';
 import * as dataSelectors from '../../selectors/data';
-import * as selectors from './selectors';
+import * as selectors  from './selectors';
 
 import AdminComponent from './AdminComponent';
 import {LOGIN} from '../../constants/pages';
@@ -24,16 +24,21 @@ function mapStateToProps(state) {
         portfolioList: dataSelectors.getPortfolioList(state),
         isPortfolioFetching: dataSelectors.isPortfolioFetching(state),
         isPortfolioFetched: dataSelectors.isPortfolioFetched(state),
-
+        isFormVisible: selectors.isFormVisible(state),
+        editItemId: selectors.getEditItemId(state),
+        filename: selectors.getFilename(state),
     };
 }
 function mapDispatchToProps(dispatch) {
     return {
-      getSession: (callback) => dispatch(globalActions.getSession(callback)),
-      goToLoginPage: () => dispatch(navigateActions.navigateTo(LOGIN.url)),
-      changeForm: (value, fieldName) => dispatch(actions.changeForm(value, fieldName)),
-      onSave: (id, formData) => dispatch(actions.saveForm(id, formData)),
-      getPortfolioList: () => dispatch(portfolioActions.getPortfolioList()),
+        getSession: (callback) => dispatch(globalActions.getSession(callback)),
+        goToLoginPage: () => dispatch(navigateActions.navigateTo(LOGIN.url)),
+        changeForm: (value, fieldName) => dispatch(actions.changeForm(value,fieldName)),
+        onSave: (id, formData) => dispatch(actions.saveForm(id, formData)),
+        getPortfolioList: () => dispatch(portfolioActions.getPortfolioList()),
+        editItem: (id, data) => dispatch(actions.editItem(id, data)),
+        removeItem: (id) => dispatch(actions.removeItem(id)),
+        showManage: () => dispatch(actions.reset()),
     };
 }
 

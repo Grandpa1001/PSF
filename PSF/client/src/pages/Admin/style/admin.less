@@ -1,5 +1,67 @@
 @import "../../../styles/variables";
 
 .admin {
+  &-portfolio{
+    &-list{
+      margin-bottom: 40px;
+      max-width: 600px;
+      width: 100%;
+      margin: auto;
 
+      &-item {
+        background: @colorLightGray;
+        margin: 2px 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        color: @mainTextColor;
+        transition: background @animationFastTime ease-in-out;
+        position: relative;
+
+        &:hover {
+          background: @colorLightContrastGray;
+          cursor: pointer;
+        }
+
+        &-title {
+
+          font-size: @mainFontSize;
+          width: 250px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        &-image {
+          width: 150px;
+          height: 90px;
+          background-size: cover;
+          background-position: center center;
+          border-radius: 4px;
+          margin: 3px 15px 3px 8px;
+        }
+
+        &-confirm {
+          position: absolute;
+          width: 100%;
+          bottom: 0;
+          left: 0;
+          color: @mainContrastColor;
+          background: @warningColor;
+          display: inline-block;
+          text-align: center;
+          opacity: 0.8;
+          padding-bottom: 10px;
+
+          .link:hover{
+            color: @mainContrastColor;
+          }
+
+          &-description {
+            width: 100%;
+            padding: 10px;
+          }
+        }
+      }
+    }
+  }
 }

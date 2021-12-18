@@ -1,25 +1,37 @@
-import React, {Component, Fragment} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import Heading from '../../../components/Heading/Heading';
+import PortfolioItem  from './PortfolioItem';
 
-export default class PortfolioList extends Component {
-  static propTypes = {
-    portfolioList:PropTypes.array,
-  };
+export default class PortfolioList extends PureComponent {
 
-  render() {
-    const {
-       portfolioList,
-     } = this.props;
+    static propTypes = {
+      portfolioList: PropTypes.array.isRequired,
+      editItem: PropTypes.func.isRequired,
+      removeItem: PropTypes.func.isRequired,
+    };
 
-    return(
-      <div>
-        <b>Twoje prace:</b>
-        <ul>
-        {portfolioList.map((item, key)=>{
-          return <li>{item.title} : <img src={item.filename}/></li>
-        })}
-        </ul>
-      </div>
-    )
+    render() {
+       const {
+         portfolioList,
+         editItem,
+         removeItem,
+      } = this.props;
+
+      return (
+        <div>
+          <Heading size={1}>Twoje prace:</Heading>
+          <ul className="admin-portfolio-list">
+            {portfolioList.map((item, key) => (
+              <PortfolioItem
+                item={item}
+                editItem={editItem}
+                removeItem={removeItem}
+                key={item._id}
+              />
+          ))}
+          </ul>
+        </div>
+        )
   }
 }

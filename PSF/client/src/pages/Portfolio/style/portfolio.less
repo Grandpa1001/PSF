@@ -1,0 +1,44 @@
+@import "../../../styles/variables";
+
+.portfolio-list {
+  &-container{
+    padding: 30px 0;
+
+  }
+
+  &-item{
+    display: block;
+    list-style: none;
+    width: 100%;
+    border-radius: 12px;
+    background-color: @colorLightGray;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: @colorDarkGray;
+
+    &-title{
+      padding: 10px;
+      font-size: 20px;
+      letter-spacing: @mainSpacing;
+
+    }
+
+    &-description{
+      font-size: @smallFontSize;
+      padding: 10px;
+    }
+
+    &-image {
+      width: 80%;
+      padding: 15px;
+      background: @backgroundWhite;
+      border-radius: 10px;
+      text-align: center;
+      margin: auto;
+
+      img{
+        width: calc(100% - 20px);
+      }
+    }
+  }
+}

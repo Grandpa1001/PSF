@@ -1,165 +1,112 @@
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import Page from '../../components/Page/Page';
-import FormField  from '../../components/FormField/FormField';
-import Input  from '../../components/Input/Input';
-import ButtonContainer  from '../../components/ButtonContainer/ButtonContainer';
-import Button  from '../../components/Button/Button';
+
 import Loader  from '../../components/Loader/Loader';
+import Heading  from '../../components/Heading/Heading';
+import Button  from '../../components/Button/Button';
+import ButtonContainer  from '../../components/ButtonContainer/ButtonContainer';
 import PortfolioList  from './components/PortfolioList';
+import PortfolioForm  from './components/PortfolioForm';
+import './style/admin.less';
 
-export default class LoginComponent extends Component {
-  static propTypes = {
-    user:  PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    file: PropTypes.object,
-    description: PropTypes.string.isRequired,
-    isPending:PropTypes.bool.isRequired,
+export default class AdminComponent extends Component {
+    static propTypes = {
+      user: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      file: PropTypes.object,
+      description: PropTypes.string.isRequired,
+      isPending: PropTypes.bool.isRequired,
 
-    getSession: PropTypes.func.isRequired,
-    goToLoginPage: PropTypes.func.isRequired,
-    onSave: PropTypes.func.isRequired,
-    changeForm: PropTypes.func.isRequired,
-    portfolioList:PropTypes.array,
+      getSession: PropTypes.func.isRequired,
+      goToLoginPage: PropTypes.func.isRequired,
+      onSave: PropTypes.func.isRequired,
+      changeForm: PropTypes.func.isRequired,
+      portfolioList: PropTypes.array.isRequired,
 
-    isUserDataFetching: PropTypes.bool,
-    isPortfolioFetching: PropTypes.bool,
-    isPortfolioFetched: PropTypes.bool,
-  };
-
-  constructor(){
-    super();
-    this.state = {showErrors:false};
-  }
-  componentDidMount(){
-  const{isPortfolioFetching, isPortfolioFetched} = this.props;
-  if(!isPortfolioFetching && !isPortfolioFetched) {
-      this.props.getPortfolioList();
-  }
-  this.props.getSession(this.onFetchSessionFinished);
-
-  }
-
-  onFetchSessionFinished = (error, response) => {
-    if(error){
-      this.props.goToLoginPage();
-      }
-    }
-
-  isFormValid = () => {
-    const errors = this.getFormErrors();
-    return Object.keys(errors).length === 0;
-  }
-
-  getFormErrors = () => {
-    const {title, file, description} = this.props;
-    const errors = {};
-    if(title === '') {
-      errors.title = 'Tytuł jest pusty';
-    }
-    if(description === ''){
-      errors.description = 'Opis jest pusty';
-    }
-    if(file ===''){
-      errors.file = 'Plik jest niepodany';
-    }
-    return errors;
-  }
-  getFormData = () => {
-    const {
-      title,
-      file,
-      description,
-    } = this.props;
-
-    return {
-      title,
-      file,
-      description,
+      isUserDataFetching: PropTypes.bool.isRequired,
+      isPortfolioFetching: PropTypes.bool.isRequired,
+      isPortfolioFetched: PropTypes.bool.isRequired,
+      isFormVisible: PropTypes.bool.isRequired,
+      editItem: PropTypes.func.isRequired,
+      editItemId: PropTypes.string,
+      filename: PropTypes.string.isRequired,
+      showManage: PropTypes.func.isRequired,
+      removeItem: PropTypes.func.isRequired,
     };
-  }
 
-  submit = () => {
-    const {onSave} = this.props;
-    if(this.isFormValid()){
-      this.setState({showErrors: false});
-      onSave(null, this.getFormData());
-    }else{
-      this.setState({showErrors: true});
+    componentDidMount(){
+      const {getSession} = this.props;
+      getSession(this.onFetchSessionFinished);
     }
-  }
 
-
-  render() {
-    const {
-      isUserDataFetching,
-       user,
-       title,
-       file,
-       description,
-       changeForm,
-       isPending,
-       portfolioList,
-       isPortfolioFetching,
-     } = this.props;
-     const errors = this.state.showErrors ? this.getFormErrors() : {};
-    return(
-      <Page title="Panel administracyjny">
-      {isUserDataFetching ? <b>Pobieram dane</b> :
-      <p>Jesteś zalogowany jako : <b>{user}</b></p>
+    onFetchSessionFinished = (error, response) => {
+      const {isPortfolioFetching, isPortfolioFetched, goToLoginPage, getPortfolioList} = this.props;
+      if(error){
+        goToLoginPage();
+      }else if(!isPortfolioFetching && !isPortfolioFetched) {
+        getPortfolioList();
       }
-      <div>Dodaj nową pracę: </div>
+    }
 
-      {isPortfolioFetching ? <Loader/> : (
-          <PortfolioList portfolioList={portfolioList} />
-      )}
+    addNewItem = ()=>{
+      const {editItem} = this.props;
+      editItem();
+    }
 
-
-      {isPending ? <Loader/> : (
-        <Fragment>
-        <FormField
-        label ="Tytuł"
-        errorMessage={errors.title}
-        isEmpty={title === ''}
-        >
-            <Input
-              type="text"
-              name="title"
-              value={title}
-              onChange={changeForm}
-              isInvalid={!!errors.tile}
-              />
-        </FormField>
-        <FormField
-          label="Opis"
-          isEmpty={description === ''}
-          errorMessage={errors.description}
-          >
-            <Input
-                name="description"
-                value ={description}
-                onChange={changeForm}
-                isInvalid={!!errors.description}
-                />
-        </FormField>
-        <FormField
-          label="Plik"
-          isEmpty={file ===''}
-          errorMessage={errors.file}
-          >
-              <Input
-                name="file"
-                type="file"
-                isInvalid={!!errors.file}
-                onChange={changeForm}
-                />
-        </FormField>
-          <ButtonContainer >
-              <Button type="primary" onClick={this.submit}>Save</Button>
-          </ButtonContainer>
-        </Fragment>
-        )}
-      </Page>
-    )
-  }
+    render() {
+       const {
+         isUserDataFetching,
+         user,
+         title,
+         file,
+         description,
+         changeForm,
+         isPending,
+         portfolioList,
+         isPortfolioFetching,
+         onSave,
+         isFormVisible,
+         showManage,
+         editItemId,
+         filename,
+         editItem,
+         removeItem,
+      } = this.props;
+        return(
+          <Page title="Panel administracyjny">
+            {isUserDataFetching ? <Loader/> : (
+              <Fragment>
+                <Heading size={4}>Jesteś zalogowany jako: <b>{user}</b></Heading>
+                {isFormVisible ? (
+                    <PortfolioForm
+                      isPending={isPending}
+                      title={title}
+                      changeForm={changeForm}
+                      description={description}
+                      file={file}
+                      onSave={onSave}
+                      showManage={showManage}
+                      editItemId={editItemId}
+                      filename={filename}
+                    />
+                  ) : (
+                    <Fragment>
+                      <ButtonContainer>
+                        <Button onClick={this.addNewItem}>Dodaj nową pracę</Button>
+                      </ButtonContainer>
+                        {isPortfolioFetching ? <Loader/> : (
+                          <PortfolioList
+                            portfolioList={portfolioList}
+                            editItem={editItem}
+                            removeItem={removeItem}
+                          />
+                        )}
+                    </Fragment>
+                  )}
+              </Fragment>
+            )}
+          </Page>
+        )
+    }
 }
