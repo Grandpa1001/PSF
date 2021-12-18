@@ -52,15 +52,16 @@ export default function userReducer (state=initialState, action){
         }
 
        case REMOVE_ITEM_SUCCESS:
-          const removedItemId = action.id;
-          const newListAfterRemove = [...state.portfolioList].filter(item =>item._id !== id);
+          const newListAfterRemove = [...state.portfolioList].filter(item =>item._id !== action.id);
           return {
               ...state,
-              portfolioList: newListAfterRemove,
+          portfolioList: newListAfterRemove,
+
         }
     }
   }
   return {
     ...state,
+
   }
 }
