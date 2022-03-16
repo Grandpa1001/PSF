@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import MenuButton from './components/MenuButton/MenuButton';
+import Button  from '../../components/Button/Button';
+import ButtonContainer  from '../../components/ButtonContainer/ButtonContainer';
 import {pages} from '../../constants/pages';
 import {navigateTo} from '../../actions/navigate';
 import {connect} from 'react-redux';
@@ -39,10 +41,13 @@ class Header extends Component {
                 activePage={activePage}
               >
               {page.label}
+
               </MenuButton>
             )
           })}
+                  <Button>zaloguj</Button>
         </ul>
+
       </div>
     );
   }
